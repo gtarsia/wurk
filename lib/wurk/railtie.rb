@@ -3,12 +3,14 @@ module Wurk
     rake_tasks do
       path = File.join(File.dirname(__FILE__), '../tasks/**/*.rake')
       Dir.glob(path).each do |r|
-        # puts r
         load r
       end
-      # puts 'asd'
-      # load 'tasks/wurk.rake'
-      # Dir.glob('lib/tasks/**/*.rake').each { |r| load r}
+    end
+    generators do
+      path = File.join(File.dirname(__FILE__), '../generators/**/*.rb')
+      Dir.glob(path).each do |r|
+        require r
+      end
     end
   end
 end

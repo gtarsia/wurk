@@ -1,0 +1,27 @@
+import <%= file_name.capitalize %> from 'api/chats'
+
+export default
+  namespaced: true
+  state:
+    data: {}
+    ids: []
+  mutations:
+    hydrate: (state, { <%= file_name.capitalize %>s }) ->
+      for <%= file_name.capitalize %> in <%= file_name.capitalize %>s
+        Vue.set state.data, <%= file_name.capitalize %>.id, <%= file_name.capitalize %>
+      Vue.set state.byChatId, chatId, messages.map (m) -> m.id
+    create: (state, <%= file_name.capitalize %>) ->
+      state.byChatId[<%= file_name.capitalize %>.private_chat_id].push <%= file_name.capitalize %>.id
+      Vue.set state.data, <%= file_name.capitalize %>.id, <%= file_name.capitalize %>
+  actions:
+    hydrate: ({commit}, args) ->
+      <%= file_name.capitalize %>.index()
+      .then (res) ->
+        commit 'set', { chatId: chatId, messages: res.data }
+    create: ({commit}, <%= file_name %>) ->
+      <%= file_name.capitalize %>.post(<%= file_name %>)
+      .then (res) ->
+        commit 'add', res.data
+  getters:
+    all: (state) -> state.ids.map (id) -> state.data[id]
+    data: (state) -> state.data
