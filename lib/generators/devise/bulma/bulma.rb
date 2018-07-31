@@ -3,7 +3,8 @@ module Wurk
     class BulmaGenerator < Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
       def add_bulma_views
-        directory '.', 'app/views/devise'
+        directory 'templates' 'app/views/devise'
+        directory 'layouts', 'app/views/layouts'
       end
     end
   end

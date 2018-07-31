@@ -4,7 +4,7 @@ namespace :wurk do
   namespace :devise do
     desc "Explaining what the task does"
     task :install do
-      system 'rails generate werk:devise:config'
+      system 'rails generate wurk:devise:config'
       system 'bundle install'
       system 'rails generate devise:install'
       system 'rails generate devise User'

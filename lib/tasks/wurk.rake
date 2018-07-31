@@ -1,4 +1,10 @@
-desc "Explaining what the task does"
-task :wurk do
-  # Task goes here
+
+namespace :wurk do
+  desc "Explaining what the task does"
+  task :install do
+    system "rake wurk:webpacker:install"
+    system "rake wurk:devise:install"
+    system "rake wurk:bulma:install"
+    system "rake wurk:vue:install"
+  end
 end
