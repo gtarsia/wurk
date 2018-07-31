@@ -49,8 +49,9 @@ module Wurk
       end
     end
 
-    def add_scaffold_templates
+    def add_generators_templates
       directory 'scaffold', 'lib/templates/erb/scaffold'
+      directory 'stylesheets', 'lib/templates/rails/scaffold'
     end
 
     def delete_default_scaffold_style
