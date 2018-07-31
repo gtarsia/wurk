@@ -4,7 +4,12 @@ module Wurk
     source_root File.expand_path('templates', __dir__)
 
     def add_bulma_style
-      append_to_file 'app/javascript/packs/index.js', "import 'bulma/bulma.sass'"
+      copy_file 'base.sass', 'app/javascript/styles/base.sass'
+      prepend_to_file 'app/javascript/packs/index.js', "import 'styles/base.sass'\n"
+      prepend_to_file 'app/javascript/packs/index.js', "import 'bulma/bulma.sass'\n"
+      inject_into_file 'app/views/layouts/application.html.erb', before: /\n.*<\/head>/ do
+        "\n    <%= stylesheet_pack_tag 'index' %>"
+      end
     end
 
     def add_navbar
@@ -23,17 +28,35 @@ module Wurk
 
     def set_container_section
       inject_into_file 'app/views/layouts/application.html.erb', before: /\n.*<%= yield %>/ do
-        "\n    <div class=\"container\">\n      <div class=\"section\">"
+        <<-HEREDOC
+
+    <div class="container">
+      <div class="section">
+        <div class="columns is-centered">
+          <div class="column is-half">
+        HEREDOC
       end
       inject_into_file 'app/views/layouts/application.html.erb', after: /<%= yield %>.*\n/ do
         <<-HEREDOC
+          </div>
+        </div>
       </div>
     </div>
         HEREDOC
       end
-      gsub_file 'app/views/layouts/application.html.erb', /<%= yield %>/ do
-        "    <%= yield %>"
+      gsub_file 'app/views/layouts/application.html.erb', /\n.*<%= yield %>/ do
+        "            <%= yield %>"
       end
+    end
+
+    def add_scaffold_templates
+      directory 'scaffold', 'lib/templates/erb/scaffold'
+    end
+
+    private
+
+    def bulma_field_class(attribute)
+      'hey'
     end
   end
 end
