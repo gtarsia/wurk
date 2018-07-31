@@ -1,4 +1,3 @@
-
 namespace :wurk do
   namespace :webpacker do
     desc "Explaining what the task does"

@@ -6,5 +6,6 @@ namespace :wurk do
     system "rake wurk:devise:install"
     system "rake wurk:bulma:install"
     system "rake wurk:vue:install"
+    system "rails generate wurk:port"
   end
 end

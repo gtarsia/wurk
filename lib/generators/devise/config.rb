@@ -1,6 +1,8 @@
+require_relative './../../wurk/random_port'
+
 module Wurk
   module Devise
-    class ConfigGenerator < Rails::Generators::Base
+    class InstallGenerator < Rails::Generators::Base
       def add_gems
         append_to_file 'Gemfile', "gem 'bcrypt'\ngem 'devise'"
       end
@@ -14,6 +16,13 @@ module Wurk
       def protect_from_forgery
         inject_into_class 'app/controllers/application_controller.rb', ApplicationController do
           "  protect_from_forgery prepend: true\n" 
+        end
+      end
+
+      def set_port
+        gsub_file 'config/puma.rb', /ENV.fetch\("PORT"\) { 3000 }/ do
+          port = Wurk::RandomPort.get
+          "ENV.fetch(\"PORT\") { #{port} }"
         end
       end
     end
