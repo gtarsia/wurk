@@ -4,7 +4,6 @@ module Wurk
       source_root File.expand_path('templates', __dir__)
       def add_bulma_views
         directory 'templates' 'app/views/devise'
-        directory 'layouts', 'app/views/layouts'
       end
     end
   end
