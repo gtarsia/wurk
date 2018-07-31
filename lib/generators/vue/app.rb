@@ -19,6 +19,7 @@ module Wurk
         directory "mixins", "app/javascript/mixins"
         directory "store", "app/javascript/store"
         append_to_file 'packs/index.js', "import './../vue_root.coffee'"
+        copy_file 'routes_generator.rb', "lib/generators/routes_generator.rb"
       end
     end
   end

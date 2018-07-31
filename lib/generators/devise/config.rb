@@ -18,6 +18,7 @@ module Wurk
           "  protect_from_forgery prepend: true\n" 
         end
       end
+
     end
   end
 end
