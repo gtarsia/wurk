@@ -49,9 +49,20 @@ module Wurk
       end
     end
 
-    def add_generators_templates
+    def add_scaffold_templates
       directory 'scaffold', 'lib/templates/erb/scaffold'
-      directory 'stylesheets', 'lib/templates/rails/scaffold'
+    end
+
+    def skip_generators_stylesheets
+      name = Rails.application.class.parent_name.capitalize
+      klass = "#{name}::Application".constantize
+      inject_into_file 'config/application.rb', after: /config.load_defaults.*\n/ do
+        <<-HEREDOC
+    config.generators do |g|
+      g.stylesheets false
+    end
+        HEREDOC
+      end
     end
 
     def delete_default_scaffold_style
