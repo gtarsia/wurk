@@ -1,6 +1,8 @@
 module Wurk
   module Vue
     class AppGenerator < Rails::Generators::Base
+      source_root File.expand_path('templates', __dir__)
+
       def create_app
         inject_into_file 'config/webpack/environment.js', before: "\nmodule.exports" do
           <<~HEREDOC

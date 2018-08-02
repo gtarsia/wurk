@@ -54,8 +54,6 @@ module Wurk
     end
 
     def skip_generators_stylesheets
-      name = Rails.application.class.parent_name.capitalize
-      klass = "#{name}::Application".constantize
       inject_into_file 'config/application.rb', after: /config.load_defaults.*\n/ do
         <<-HEREDOC
     config.generators do |g|
