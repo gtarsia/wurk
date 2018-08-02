@@ -1,1 +1,22 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+
+getters = mapGetters
+  getter: 'store/getter'
+actions = mapActions
+  action: 'store/action'
+mutations = mapMutations
+  mutation: 'store/mutation'
+
+export default
+  template: '''
+    <div>
+    </div>
+  '''
+  computed: {
+    getters...
+  }
+  methods: {
+    action...
+    mutation...
+  }
+  mounted: ->
