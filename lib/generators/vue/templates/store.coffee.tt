@@ -1,4 +1,4 @@
-import <%= file_name.capitalize %> from 'api/chats'
+import <%= file_name.capitalize %> from 'api/<%= file_name.capitalize %>'
 
 export default
   namespaced: true
@@ -6,13 +6,13 @@ export default
     data: {}
     ids: []
   mutations:
-    hydrate: (state, { <%= file_name.capitalize %>s }) ->
-      for <%= file_name.capitalize %> in <%= file_name.capitalize %>s
-        Vue.set state.data, <%= file_name.capitalize %>.id, <%= file_name.capitalize %>
+    hydrate: (state, { <%= file_name.downcase %>s }) ->
+      for <%= file_name.downcase %> in <%= file_name.downcase %>s
+        Vue.set state.data, <%= file_name.downcase %>.id, <%= file_name.downcase %>
       Vue.set state.byChatId, chatId, messages.map (m) -> m.id
-    create: (state, <%= file_name.capitalize %>) ->
-      state.byChatId[<%= file_name.capitalize %>.private_chat_id].push <%= file_name.capitalize %>.id
-      Vue.set state.data, <%= file_name.capitalize %>.id, <%= file_name.capitalize %>
+    create: (state, <%= file_name.downcase %>) ->
+      state.byChatId[<%= file_name.downcase %>.private_chat_id].push <%= file_name.downcase %>.id
+      Vue.set state.data, <%= file_name.downcase %>.id, <%= file_name.downcase %>
   actions:
     hydrate: ({commit}, args) ->
       <%= file_name.capitalize %>.index()
