@@ -1,11 +1,11 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
-getters = mapGetters
-  getter: 'store/getter'
-actions = mapActions
-  action: 'store/action'
-mutations = mapMutations
-  mutation: 'store/mutation'
+# getters = mapGetters
+#  getter: 'store/getter'
+# actions = mapActions
+#   action: 'store/action'
+# mutations = mapMutations
+#   mutation: 'store/mutation'
 
 export default
   template: '''
@@ -13,10 +13,10 @@ export default
     </div>
   '''
   computed: {
-    getters...
+    # getters...
   }
   methods: {
-    action...
-    mutation...
+    # action...
+    # mutation...
   }
   mounted: ->
