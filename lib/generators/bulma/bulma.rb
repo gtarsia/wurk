@@ -12,18 +12,12 @@ module Wurk
       end
     end
 
-    def add_navbar
-      copy_file '_navbar.html.erb', 'app/views/layouts/_navbar.html.erb'
-      inject_into_file 'app/views/layouts/application.html.erb', before: /\n.*<%= yield %>/ do
-        "\n    <%= render 'layouts/navbar' %>"
-      end
-    end
-
-    def add_flash
-      copy_file '_flash.html.erb', 'app/views/layouts/_flash.html.erb'
-      inject_into_file 'app/views/layouts/application.html.erb', before: /\n.*<%= yield %>/ do
-        "\n    <%= render 'layouts/flash' %>"
-      end
+    def set_layout
+      copy_file 'layouts/application.html.erb', 'app/views/layouts/application.html.erb'
+      copy_file 'layouts/_head.html.erb', 'app/views/layouts/_head.html.erb'
+      copy_file 'layouts/_params.html.erb', 'app/views/layouts/_params.html.erb'
+      copy_file 'layouts/_navbar.html.erb', 'app/views/layouts/_navbar.html.erb'
+      copy_file 'layouts/_flash.html.erb', 'app/views/layouts/_flash.html.erb'
     end
 
     def set_container_section

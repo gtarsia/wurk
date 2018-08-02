@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/head' %>
+  </head>
+
+  <body>
+    <div id="app">
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/flash' %>
+      <div class="container">
+        <div class="section">
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= javascript_pack_tag 'index' %>
+  </body>
+</html>
