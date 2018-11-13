@@ -3,6 +3,7 @@ module Wurk
   class BulmaGenerator < Rails::Generators::Base
     source_root File.expand_path('templates', __dir__)
 
+    # hey, cool stuff
     def add_bulma_style
       copy_file 'base.sass', 'app/javascript/styles/base.sass'
       prepend_to_file 'app/javascript/packs/index.js', "import 'styles/base.sass'\n"

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import <%= file_name.capitalize %> from 'api/<%= file_name.capitalize %>'
 
 export default
@@ -6,22 +7,22 @@ export default
     data: {}
     ids: []
   mutations:
-    hydrate: (state, { <%= file_name.downcase %>s }) ->
+    hydrate: (state, <%= file_name.downcase %>s) ->
       for <%= file_name.downcase %> in <%= file_name.downcase %>s
         Vue.set state.data, <%= file_name.downcase %>.id, <%= file_name.downcase %>
-      Vue.set state.byChatId, chatId, messages.map (m) -> m.id
+      state.ids = <%= file_name.downcase %>s.map (m) -> m.id
     create: (state, <%= file_name.downcase %>) ->
-      state.byChatId[<%= file_name.downcase %>.private_chat_id].push <%= file_name.downcase %>.id
+      state.ids.push <%= file_name.downcase %>.id
       Vue.set state.data, <%= file_name.downcase %>.id, <%= file_name.downcase %>
   actions:
     hydrate: ({commit}, args) ->
       <%= file_name.capitalize %>.index()
       .then (res) ->
-        commit 'set', { chatId: chatId, messages: res.data }
+        commit 'hydrate', res.data
     create: ({commit}, <%= file_name %>) ->
-      <%= file_name.capitalize %>.post(<%= file_name %>)
+      <%= file_name.capitalize %>.create(<%= file_name %>)
       .then (res) ->
-        commit 'add', res.data
+        commit 'create', res.data
   getters:
     all: (state) -> state.ids.map (id) -> state.data[id]
     data: (state) -> state.data
