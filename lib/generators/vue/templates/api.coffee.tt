@@ -1,9 +1,12 @@
+import base from 'api/mixins/base'
 import axios from 'axios'
 import Routes from 'misc/routes'
 
-export default
-  index: (d) -> axios.get Routes.<%= file_name.underscore %>s_path(format: 'json'), params: d
-  create: (d) -> axios.post Routes.<%= file_name.underscore %>s_path(format: 'json'), { <%= file_name.camelcase %>: d }
-  show: ({ id }) -> axios.get Routes.<%= file_name.underscore %>_path(id: id, format: 'json')
-  delete: ({ id }) -> axios.delete Routes.<%= file_name.underscore %>_path(id: id, format: 'json')
-  update: (d) -> axios.put Routes.<%= file_name.underscore %>_path(id: d.id, format: 'json'), { <%= file_name.camelcase %>: d }
+resourceName = '<%= @resource_name %>'
+api = Object.assign base({ resourceName }), {
+  # override specific actions here
+  # index: (q) ->
+    # axios Routes.custom_path(), params: q
+}
+
+export default api

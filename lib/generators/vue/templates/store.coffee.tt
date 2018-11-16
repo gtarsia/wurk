@@ -1,28 +1,12 @@
 import Vue from 'vue'
-import <%= @resource_name %> from 'api/<%= file_name.underscore %>'
+import api from 'api/<%= file_name.singularize.underscore %>'
+import base from 'store/mixins/base'
 
-export default
-  namespaced: true
-  state:
-    data: {}
-    ids: []
-  mutations:
-    hydrate: (state, <%= @var_name %>s) ->
-      for <%= @var_name %> in <%= @var_name %>s
-        Vue.set state.data, <%= @var_name %>.id, <%= @var_name %>
-      state.ids = <%= @var_name %>s.map (m) -> m.id
-    create: (state, <%= @var_name %>) ->
-      state.ids.push <%= @var_name %>.id
-      Vue.set state.data, <%= @var_name %>.id, <%= @var_name %>
-  actions:
-    hydrate: ({commit}, args) ->
-      <%= @resource_name %>.index()
-      .then (res) ->
-        commit 'hydrate', res.data
-    create: ({commit}, <%= @var_name %>) ->
-      <%= @resource_name %>.create(<%= @var_name %>)
-      .then (res) ->
-        commit 'create', res.data
-  getters:
-    all: (state) -> state.ids.map (id) -> state.data[id]
-    data: (state) -> state.data
+storeName = '<%= @store_name %>'
+store = Object.assign base({ api, storeName }), {
+  # override specific actions here
+  # index: (q) ->
+    # axios Routes.custom_path(), params: q
+}
+
+export default store
