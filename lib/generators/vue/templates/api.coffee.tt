@@ -2,8 +2,8 @@ import axios from 'axios'
 import Routes from 'misc/routes'
 
 export default
-  index: (q) -> axios.get Routes.<%= file_name %>s_path(format: 'json'), params: q
-  create: (q) -> axios.post Routes.<%= file_name %>s_path(format: 'json'), params: q
-  show: (q) -> axios.get Routes.<%= file_name %>_path(format: 'json'), params: q
-  delete: (q) -> axios.delete Routes.<%= file_name %>_path(format: 'json'), params: q
-  update: (q) -> axios.put Routes.<%= file_name %>_path(format: 'json'), params: q
+  index: (q) -> axios.get Routes.<%= file_name.underscore %>s_path(format: 'json'), params: q
+  create: (q) -> axios.post Routes.<%= file_name.underscore %>s_path(format: 'json'), params: q
+  show: (q) -> axios.get Routes.<%= file_name.underscore %>_path(format: 'json'), params: q
+  delete: (q) -> axios.delete Routes.<%= file_name.underscore %>_path(format: 'json'), params: q
+  update: (q) -> axios.put Routes.<%= file_name.underscore %>_path(format: 'json'), params: q

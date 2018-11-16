@@ -4,6 +4,8 @@ module Wurk
       source_root File.expand_path('templates', __dir__)
 
       def create_api_file
+        @var_name = file_name.camelcase(:lower)
+        @resource_name = file_name.camelcase(:upper)
         inject_into_file 'app/javascript/store/index.coffee', after: /modules:.*{\n/ do
           "    #{file_name},\n"
         end

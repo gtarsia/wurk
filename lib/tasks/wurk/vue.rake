@@ -6,7 +6,7 @@ namespace :wurk do
       system 'bundle add js-routes'
       system 'spring stop'
       system "rails generate wurk:vue:app"
-      system "yarn add vuex vue"
+      system "yarn add vuex vue axios"
     end
   end
 end
